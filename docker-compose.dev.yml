@@ -1,0 +1,44 @@
+version: "3.8"
+
+services:
+  mongodb:
+    image: mongo:5.0.7
+    restart: unless-stopped
+    container_name: mongodb_container
+    networks:
+      - api-network
+    ports:
+      - ${MONGODB_PORT}:27017
+    volumes:
+      - ./docker-storage/mongodb:/data/db
+
+  redis:
+    image: redis:5-alpine
+    container_name: redis_container
+    networks:
+      - api-network
+    ports:
+      - ${REDIS_PORT}:6379
+    volumes:
+      - ./docker-storage/redis:/data/db
+
+  api:
+    container_name: api_container
+    build:
+      context: .
+      dockerfile: ./Dockerfile.dev
+    depends_on:
+      - mongodb
+      - redis
+    volumes:
+      - ./:/usr/src/app
+    restart: unless-stopped
+    env_file: .env
+    networks:
+      - api-network
+    ports:
+      - ${API_PORT}:3000
+
+networks:
+  api-network:
+    driver: bridge
