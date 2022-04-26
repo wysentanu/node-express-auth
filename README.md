@@ -5,13 +5,19 @@ This project is for coding test to create an API for authentication and authoriz
 ## Configure Environment Variables
 Initialize environment variables for the project.
 
-```bash 
-cp env.example .env
+```bash
+cp .env.example .env
 ```
+
 (Optional) when using docker, remember initialize the environment variables with the following command:
 
 ```bash
-cp docker.env.example .docker.dev.env
+cp .docker.env.example .docker.dev.env
+```
+
+## Install dependencies
+```bash
+yarn install
 ```
 
 ## Run: Development Mode
