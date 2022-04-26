@@ -237,6 +237,9 @@
 							}
 						}
 					},
+					"401": {
+						"description": "Unauthorized"
+					},
 					"422": {
 						"description": "Validation Error",
 						"content": {

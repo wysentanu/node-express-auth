@@ -12,6 +12,7 @@ import { generateToken } from '../libs/utils';
 export default class LoginControllerClass {
   @Post()
   @Response<IValidationError>(422, 'Validation Error')
+  @Response(401, 'Unauthorized')
   public async login(
     @Body() loginRequest: ILoginRequestDto,
   ): Promise<ILoginResponseDto | null> {
