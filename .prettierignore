@@ -1,0 +1,5 @@
+# Ignore artifacts:
+dist
+docker-storage
+node_modules
+coverage
